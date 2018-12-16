@@ -1,12 +1,12 @@
 # react-native-modal-handler
 
-복잡하지 않고, state 가 없고, 중복된 코드가 없도록 모달을 관리하는 라이브러리
+Modal Handler Library in react-native, which is No Mess, No State, No Duplicate.
 
 [![npm version](https://badge.fury.io/js/react-native-modal-handler.svg)](https://badge.fury.io/js/react-native-modal-handler)
 
-*react-native-modal-handler 는 [eumji-modal-pattern](https://github.com/7772/eumji-modal-pattern?fbclid=IwAR1tArmWXGk5Zo4chu2O8kN729CrKMfZZvJcyJMjuR9fjVFCR2PGeHOjViI) 의 내용에 기반을 두고 작성된 라이브러리입니다.*
+*react-native-modal-handler is a library which is based on [eumji-modal-pattern](https://github.com/7772/eumji-modal-pattern?fbclid=IwAR1tArmWXGk5Zo4chu2O8kN729CrKMfZZvJcyJMjuR9fjVFCR2PGeHOjViI).*
 
-### 사용방법
+### HOW TO USE
 
 **1. npm install**
 ```
@@ -20,21 +20,21 @@ import { withModal } from "react-native-modal-handler";
 
 **3. export `withModal`**
 
-만약 여러분의 컴포넌트 이름이 `YourComponent.js` 라면
+If the name of your component is `YourComponents.js`
 
 ```
-export default withModal(YourComponent);
+export default withModal(Yourcomponent);
 ```
 
-만약 여러분이 redux 의 connect 함수를 사용하고 있다면
+If you are using another higher-order-component like the `connect` function of redux
 
 ```
 export default connect(..)(withModal(YourComponent));
 ```
 
-**4. 모달 만들기**
+**4. Making Modal**
 
-다음과 같이 `modals` 디렉토리를 만들어서 여러 모달들을 관리할 것을 추천합니다.
+I recommend to handle multiple modal components by making `modals` directory.
 
 - `src`
   - `components`
@@ -43,7 +43,7 @@ export default connect(..)(withModal(YourComponent));
       - `SecondModal.js`
       - `ThirdModal.js`
 
-모달은 기본적으로 아래와 같은 구조입니다.
+Basically, Modal has the structure like below.
 
 ```
 import Modal from "react-native-modal";
@@ -69,19 +69,19 @@ export default FirstModal = ({ isVisible, closeModal, ...otherProps }) => {
 };
 ```
 
-저는 [react-native-modal](https://github.com/react-native-community/react-native-modal) 을 사용했고 여러분도 이 라이브러리를 사용할 것을 추천합니다.
+I used [react-native-modal](https://github.com/react-native-community/react-native-modal) and recommend that you use this library too. Because `react-native-modal` has many features based on pure `Modal` in react-native and is very stable.
 
-모달 컴포넌트는 stateless 또는 statefull 어떤 것이든 관계없이 만드시면 됩니다.
+You can make Modal component regardless of that the component is stateless or statefull.
 
-props 으로 `isVisible`, `closeModal` 이 자동으로 전달 되기때문에, 위에 예제처럼 반드시 선언해주어야 합니다.
+Since `isVisible` and `closeModal` props are automatically passed to your modal component, You should define those as props.
 
-만약 여러분이 위의 두 props 이외에 다른 props 을 사용할 것 이라면, `...otherProps` 를 통해 접근하시면 됩니다.
+If you want to get other props in addition two props above, You can do it by using `...otherProps`.
 
-**5. `modals` 변수 만들기 및 모달 컴포넌트 렌더링 하기**
+**5. Making `modals` variable and Rendering Modal Components**
 
-`react-native-modal-handler` 는 라이브러리 내부로 모탈 컴포넌트들을 전달하여 `showModal`, `closeModal` 등의 props 를 주입합니다.
+`react-native-modal-handler` adds `showModal` and `closeModal` props in your modal components by passing `modals` variable that will be defined below to the inner of library.
 
-따라서, 여러분이 모달을 사용할 `YourComponent.js` 에 어떠한 모달을 사용할 것인지 선언해주어야 합니다.
+So, You should define which modal you will use in `YourComponent.js`.
 
 ```
 // YourComponent.js
@@ -97,19 +97,19 @@ const modals = {
 };
 ```
 
-변수의 이름은 통일성을 위하여 항상 `modals` 를 사용할 것을 추천합니다.
+I recommend that you use `modals` as the name of that variable for consistency.
 
-`key` 값으로 해당 모달 컴포넌트 이름의 `camelCase` 기법으로 이름을 지어줍니다.
+The keys of the `modals` variable are very important because they are used to open and close modal components.
 
-이 `key` 값들은 해당 모달 컴포넌트를 열고 닫을때 사용되기 때문에 아주 중요합니다.
+To maintain uniformity, it is recommended that the names be created with the `camelCase` technique of the name of the modal component.
 
-다음으로 이렇게 선언한 `modals` 변수를 `renderModal` 함수의 인자로 보내줍니다.
+Next, You will pass the `modals` variable to `withModal` as property.
 
 ```
 this.props.renderModal(modals);
 ```
 
-다음은 이 부분에 관한 전체 예제 입니다.
+The following is a complete example of this part.
 
 ```
 import FirstModal from "./modals/FirstModal";
@@ -128,56 +128,45 @@ render() {
 }
 ```
 
-**6. showModal 과 closeModal 사용하기**
+**6. How to show and close modal**
 
-- showModal 사용법
+- `showModal`
 
 ```
-// FirstModal.js 를 열고 싶을때
-// YourComponent.js
+// want to show FirstModal.js in YourComponent.js
 
 this.props.showModal("firstModal");
 ```
 
-- closeModal 사용법
+- `closeModal`
 
 ```
-// FirstModal.js 를 닫고 싶을때
-// YourComponent.js
+// want to close FirstModal.js in YourComponents.js
 
 this.props.closeModal("firstModal");
 ```
 
 ```
-// FirstModal.js 를 닫고 싶을때
-// FirstModal.js
+// want to close FirstModal.js in FirstModal.js
 
 <TouchableOpacity onPress={() => closeModal("firstModal")}>
   <Text>Close Modal</Text>
 </TouchableOpacity>
 ```
 
-**7. 전체 예제**
+**7. Full Examples**
 
 [example](https://github.com/7772/react-native-modal-handler/tree/master/example/simple-eumji-modal-pattern/src)
 
-### 기여하기
+### Contributions
 
-Pull Request 와 Issue 는 언제나 열려있습니다. 
+Pull Request and Issue are open at any time.
 
-`react-native-modal-handler` 를 개선시킬 아이디어가 있으시다면, 주저없이 참여해주세요.
+If you have ideas to improve `react-native-modal-handler`, please do not hesitate to join us.
 
+#### Translations
 
-
-
-
-
-
-
-
-
-
-
+[한국어]()
 
 
 
