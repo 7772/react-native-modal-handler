@@ -1,6 +1,6 @@
 # react-native-modal-handler
 
-Modal Handler Library in react-native, which is No Mess, No State, No Duplicate.
+Modal Handler Library in react-native : No Mess, No State, No Duplicate.
 
 [![npm version](https://badge.fury.io/js/react-native-modal-handler.svg)](https://badge.fury.io/js/react-native-modal-handler)
 
