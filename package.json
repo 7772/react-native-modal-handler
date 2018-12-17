@@ -1,6 +1,6 @@
 {
   "name": "react-native-modal-handler",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Modal handler in react native",
   "main": "src/index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "url": "git+https://github.com/7772/react-native-modal-handler.git"
   },
   "keywords": [
+    "react-native-modal-handler",
     "react-native",
     "react-native-modal",
     "modal"
@@ -23,14 +24,12 @@
   "homepage": "https://github.com/7772/react-native-modal-handler#readme",
   "peerDependencies": {
     "react": "*",
-    "react-native": "*",
-    "react-native-modal": "*"
+    "react-native": "*"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "eslint": "^4.19.1",
     "react": ">=15.0.0",
-    "react-native": ">=0.24.0",
-    "react-native-modal": "^7.0.2"
+    "react-native": ">=0.24.0"
   }
 }

@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 export const withModal = (WrappedComponent) => {
@@ -54,19 +53,21 @@ export const withModal = (WrappedComponent) => {
     }
 
     showModal(modal) {
-      this.setState({ 
+      this.setState(state => ({ 
         isVisible: {
+          ...state.isVisible,  
           [modal]: true
         } 
-      });
+      }));
     }
 
     closeModal(modal) {
-      this.setState({ 
+      this.setState(state => ({ 
         isVisible: {
+          ...state.isVisible,  
           [modal]: false
         } 
-      });
+      }));
     }
 
     _getModal(modals) {
