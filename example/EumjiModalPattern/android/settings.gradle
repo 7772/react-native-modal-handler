@@ -1,0 +1,3 @@
+rootProject.name = 'EumjiModalPattern'
+
+include ':app'
