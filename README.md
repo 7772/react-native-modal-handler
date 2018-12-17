@@ -156,7 +156,7 @@ this.props.closeModal("firstModal");
 
 **7. Full Examples**
 
-[example](https://github.com/7772/react-native-modal-handler/tree/master/example/simple-eumji-modal-pattern/src)
+[example](https://github.com/7772/react-native-modal-handler/tree/master/example/EumjiModalPattern)
 
 ### Contributions
 
